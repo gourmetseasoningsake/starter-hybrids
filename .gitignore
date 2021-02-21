@@ -1,0 +1,29 @@
+# yarn
+
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
+!/.yarn/sdks
+
+# zero install
+#!/.yarn/cache
+# or
+# not to zero install
+/.pnp.*
+
+node_modules
+
+
+# env
+
+.env*
+
+
+# nyc
+
+.nyc_output
+
+
+# etc
+
+build

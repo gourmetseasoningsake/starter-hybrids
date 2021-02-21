@@ -1,0 +1,33 @@
+{
+  "name": "hybrids-snowpack",
+  "devDependencies": {
+    "@ampire/snowpack-plugin-postcss-extra": "^0.1.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@snowpack/plugin-webpack": "^2.3.0",
+    "core-js": "^3.8.3",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^4.0.0",
+    "http-server": "^0.12.3",
+    "pnp-webpack-plugin": "^1.6.4",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "postcss-preset-env": "^6.7.0",
+    "snowpack": "^3.0.11",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "crocks": "^0.12.4",
+    "gsap": "^3.6.0",
+    "hybrids": "^4.3.4",
+    "tailwindcss": "^2.0.2",
+    "unfetch": "^4.2.0"
+  },
+  "scripts": {
+    "dev": "snowpack dev",
+    "build": "snowpack build",
+    "serve": "dotenv -- cross-var http-server build -a localhost -S -C %HTTPS_SERVER_CERT% -K %HTTPS_SERVER_KEY%",
+    "build:serve": "yarn run build && yarn run serve",
+    "up:priv": "dotenv yarn up"
+  }
+}

@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+  /* Fonts */
+
+  @font-face {}
+  @font-face {}
+
+
+  /* Base elements */
+
+  html {
+    font-size: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  input {
+    background-color: transparent;
+  }
+
+
+  /* Custom elements */
+
+  the-header,
+  the-main,
+  the-footer {
+    @apply block;
+  }
+
+  the-header {
+    @apply fixed inset-x-0;
+  }
+
+  the-main {
+    @apply min-h-screen;
+  }
+
+}
+
+
+@layer utilities {
+
+  /* a11y */
+
+  .focus,
+  .focus-round {
+    &:focus {
+      appearance: none;
+      outline: none;
+      box-shadow: none;
+    }
+    &:invalid {
+      box-shadow: none;
+    }
+  }
+
+  .focus-target,
+  .focus-target-sm {
+    transition: color 500ms 50ms;
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+    }
+  }
+
+  .focus-target:after {
+    top: -.5rem;
+    right: -.5rem;
+    bottom: -.5rem;
+    left: -.5rem;
+  }
+
+  .focus-target-sm:after {
+    top: 0;
+    right: -.5rem;
+    bottom: 0;
+    left: -.5rem;
+  }
+
+  .focus {
+    &:focus .focus-target:after,
+    &:focus + .focus-target:after,
+    &:focus .focus-target-sm:after,
+    &:focus + .focus-target-sm:after {
+      border: 1px dashed currentColor;
+      border-radius: 0.125rem; /* NB: rounded-sm */
+    }
+  }
+
+  .focus-round {
+    &:focus .focus-target:after,
+    &:focus + .focus-target:after,
+    &:focus .focus-target-sm:after,
+    &:focus + .focus-target-sm:after {
+      border: 1px dashed currentColor;
+      border-radius: 9999px;
+    }
+  }
+
+}
