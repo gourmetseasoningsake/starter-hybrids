@@ -1,1 +1,3 @@
-# hybrids-snowpack
+# starter-hybrids
+
+wip...
