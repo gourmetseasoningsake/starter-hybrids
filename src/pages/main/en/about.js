@@ -1,4 +1,4 @@
-import { store, render, html } from 'hybrids';
+import { store, html } from 'hybrids';
 import Session from '~/session';
 
 
@@ -6,13 +6,13 @@ import Session from '~/session';
 const PageEnAbout = {
   session: store(Session),
 
-  render: render(({ session }) => html`
+  content: ({ session }) => html`
 
     <main>
       <h1>About (en)</h1>
     </main>
 
-  `, { shadowRoot: false })
+  `
 };
 
 

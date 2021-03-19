@@ -1,4 +1,4 @@
-import { store, render, html } from 'hybrids';
+import { store, html } from 'hybrids';
 import Session from '~/session';
 
 
@@ -17,7 +17,7 @@ const HeaderDefault = {
   session: store(Session),
   expanded: true,
 
-  render: render(({ session, expanded }) => html`
+  content: ({ session, expanded }) => html`
 
     <header class="flex">
       <nav
@@ -46,7 +46,7 @@ const HeaderDefault = {
       </div>
     </header>
 
-  `, { shadowRoot: false })
+  `
 }
 
 

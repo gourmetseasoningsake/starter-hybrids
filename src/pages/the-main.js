@@ -11,14 +11,12 @@ import { fadeOut, fadeIn } from '~/animations';
 const transitionOut =
   host =>
   fadeOut(host, { timeScale: 2 })
-  .run();
 
 
 
 const transitionIn =
   host =>
   fadeIn(host, { timeScale: 2.5, delay: 0.2 })
-  .run();
 
 
 
@@ -29,7 +27,7 @@ export default {
 
     html.resolve(
 
-      transitionOut(host)
+      transitionOut(host).run()
 
       .then(
         () => // NB: animTimeline =>
@@ -41,7 +39,7 @@ export default {
 
       .then(
         module =>
-        ( transitionIn(host),
+        ( transitionIn(host).run(),
           module.default(host)
         )
       )
