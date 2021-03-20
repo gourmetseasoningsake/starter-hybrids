@@ -27,6 +27,6 @@
     "build": "snowpack build",
     "serve": "dotenv -- cross-var http-server build -a localhost -S -C %HTTPS_SERVER_CERT% -K %HTTPS_SERVER_KEY%",
     "build:serve": "yarn run build && yarn run serve",
-    "up:priv": "dotenv yarn up"
+    "upp": "dotenv yarn up"
   }
 }
