@@ -1,7 +1,3 @@
-import curry from 'crocks/helpers/curry';
-
-
-
 export default {
   '/':
     { path: '/',
@@ -37,19 +33,3 @@ export default {
       state: { main: 'notfound' }
     }
 };
-
-
-
-export const mergeRoutes = curry(
-  (a, b) =>
-  ({
-    path: b.path || a.path,
-    title: b.title || a.title || '',
-    state: {
-      header: 'default',
-      footer: 'default',
-      ...a.state,
-      ...b.state
-    }
-  })
-);

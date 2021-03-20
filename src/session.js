@@ -1,17 +1,18 @@
 import { store } from 'hybrids';
-import Routes, { mergeRoutes } from './routes';
+import Routes from './routes';
 //import { theme } from '^/tailwind.config';
 
 
 
 import IO from 'crocks/IO';
 
+import curry from 'crocks/helpers/curry';
 import getProp from 'crocks/Maybe/getProp';
 import liftA2 from 'crocks/helpers/liftA2';
 import pipeK from 'crocks/helpers/pipeK';
 
 import constant from 'crocks/combinators/constant';
-import identity from 'crocks/combinators/identity'
+import identity from 'crocks/combinators/identity';
 
 import {
   safeObject,
@@ -29,7 +30,23 @@ import {
 
 
 
-const Session = mergeRoutes(Routes['/'], {});
+const mergeFromRoutes = curry(
+  (a, b) =>
+  ({
+    path: b.path || a.path,
+    title: b.title || a.title || '',
+    state: {
+      header: 'default',
+      footer: 'default',
+      ...a.state,
+      ...b.state
+    }
+  })
+);
+
+
+
+const Session = mergeFromRoutes(Routes['/'], {});
 
 
 
@@ -98,7 +115,7 @@ const safeRoute =
 const fromRoutes =
   session =>
   liftA2(
-    mergeRoutes,
+    mergeFromRoutes,
     safeRoute(session),
     safeObject(session)
   );
