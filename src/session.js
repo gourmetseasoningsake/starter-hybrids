@@ -148,28 +148,3 @@ export const navigate =
 
 
 export default Session;
-
-
-
-// -------
-
-
-
-(function init () {
-
-  route({ path: window.location.pathname });
-
-
-
-  window.addEventListener(
-    'popstate',
-    e => route({ path: e.target.location.pathname })
-  );
-
-
-
-  // safeRecValues(theme.screens)
-  // .map(toMQList('min-width'))
-  // .map(x => x.addListener(console.log))
-
-})();
