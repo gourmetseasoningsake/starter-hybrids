@@ -1,4 +1,4 @@
-import { html } from 'hybrids';
+import { html, property } from 'hybrids';
 
 
 import { chart } from '.';
@@ -7,9 +7,7 @@ import { chart } from '.';
 
 const changeChart =
   host =>
-  ( host.xLabels = [...host.xLabels, 'x'],
-    host.data= [...host.data, '20']
-  )
+  host.data = [...host.data, 43];
 
 
 
@@ -17,9 +15,18 @@ export default {
   width: '100%',
   height: '600px',
   title: 'Months',
-  xLabels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+  xLabels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
   bgColor: 'dodgerblue',
-  data: [0, 10, 5, 2, 20, 45, 50, 55, 60, 61],
+  data: {
+    ...property([30, 10, 5, 2, 20, 45, 50, 55, 60, 61]),
+    observe:
+      (h, v) =>
+      h.$chart.chart !== undefined &&
+      Array.isArray(v) &&
+      ( h.$chart.chart.data = v,
+        h.$chart.chart.update()
+      )
+  },
   config: ({ title, xLabels, bgColor, data }) => ({
     type: 'bar',
     data: {

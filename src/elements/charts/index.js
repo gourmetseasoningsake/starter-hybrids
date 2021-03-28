@@ -22,6 +22,8 @@ export const chart =
     outer.style.width = width;
     outer.style.height = height;
 
+    let chart_;
+
     mutationObserver(
       (i, mo) =>
       i.type === 'childList' &&
@@ -30,7 +32,7 @@ export const chart =
           (k, io) =>
           k.isIntersecting &&
           ( io.disconnect(),
-            createChart(k.target.canvas, config)
+            outer.chart = createChart(k.target.canvas, config)
           ),
           { root: null,
             rootMargin: '0px',
