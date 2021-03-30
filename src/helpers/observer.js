@@ -34,6 +34,12 @@ export const mutationObserver =
 
 
 
+export const isChildList =
+  entry =>
+  entry.type === 'childList';
+
+
+
 const createIntersectionObserver =
   (f, o) =>
   new IntersectionObserver(
@@ -58,3 +64,9 @@ export const intersectionObserver =
     safeObject(o),
     safeElement(el)
   );
+
+
+
+export const isIntersecting =
+  entry =>
+  entry.isIntersecting;

@@ -1,8 +1,11 @@
 import Chart from 'chart.js';
 
+
 import {
   mutationObserver,
-  intersectionObserver
+  intersectionObserver,
+  isChildList,
+  isIntersecting
 } from '~/helpers/observer';
 
 
@@ -13,38 +16,34 @@ const createChart =
 
 
 
-export const chart =
-  ({ width, height, config }) => {
-    const outer = document.createElement('div');
-    outer.canvas = document.createElement('canvas');
+export const chart = {
+  connect (h, k) {
+    const parent = document.createElement('div');
+    parent.canvas = document.createElement('canvas');
 
-    outer.classList.add('relative');
-    outer.style.width = width;
-    outer.style.height = height;
-
-    let chart_;
+    parent.classList.add('relative');
+    parent.style.width = h.width;
+    parent.style.height = h.height;
 
     mutationObserver(
       (i, mo) =>
-      i.type === 'childList' &&
+      isChildList(i) &&
       ( mo.disconnect(),
         intersectionObserver(
-          (k, io) =>
-          k.isIntersecting &&
+          (j, io) =>
+          isIntersecting(j) &&
           ( io.disconnect(),
-            outer.chart = createChart(k.target.canvas, config)
+            parent.chart = createChart(j.target.canvas, h.config)
           ),
-          { root: null,
-            rootMargin: '0px',
-            threshold: 0
-          },
-          outer
+          { root: null, rootMargin: '0px', threshold: 0 },
+          parent
         )
       ),
       { childList: true },
-      outer
+      parent
     );
 
-    outer.appendChild(outer.canvas);
-    return outer;
-  };
+    parent.appendChild(parent.canvas);
+    h[k] = parent;
+  }
+};

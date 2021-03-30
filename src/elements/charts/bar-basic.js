@@ -7,7 +7,8 @@ import { chart } from '.';
 
 const changeChart =
   host =>
-  host.data = [...host.data, 43];
+  { host.data = [...host.data, 43];
+  }
 
 
 
@@ -18,14 +19,16 @@ export default {
   xLabels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
   bgColor: 'dodgerblue',
   data: {
-    ...property([30, 10, 5, 2, 20, 45, 50, 55, 60, 61]),
-    observe:
-      (h, v) =>
-      h.$chart.chart !== undefined &&
-      Array.isArray(v) &&
-      ( h.$chart.chart.data = v,
-        h.$chart.chart.update()
-      )
+    connect: (h, k) => {
+      console.log(h, k)
+      h[k] = [30, 10, 5, 2, 20, 45, 50, 55, 60, 61];
+    },
+    observe: (h, v) => {
+      if (h.$chart.chart !== undefined) {
+        h.$chart.chart.config.data.datasets[0].data = v;
+        h.$chart.chart.update();
+      }
+    }
   },
   config: ({ title, xLabels, bgColor, data }) => ({
     type: 'bar',
@@ -43,5 +46,5 @@ export default {
     }
   }),
   $chart: chart,
-  content: ({ $chart }) => html`${$chart}<button onclick=${changeChart}>add x</button>`
+  content: ({ $chart }) => html`${$chart}<button onclick=${changeChart}>blub</button>`
 };
