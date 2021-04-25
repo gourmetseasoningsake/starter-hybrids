@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+import { Chart, BarController, CategoryScale, LinearScale, BarElement } from 'chart.js';
 
 
 import {
@@ -7,6 +7,10 @@ import {
   isChildList,
   isIntersecting
 } from '~/helpers/observer';
+
+
+
+Chart.register(BarController, CategoryScale, LinearScale, BarElement);
 
 
 

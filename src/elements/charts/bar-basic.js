@@ -1,5 +1,4 @@
-import { html, property } from 'hybrids';
-
+import { html } from 'hybrids';
 
 import { chart } from '.';
 

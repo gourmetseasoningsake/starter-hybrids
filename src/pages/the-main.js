@@ -31,15 +31,19 @@ export default {
 
       .then(
         () => // NB: animTimeline =>
-        import(
-          /* webpackChunkName: "main-[request]" */
-          `./main/${session.state.main}.js`
+        (
+          console.log(session, session.state.main),
+          import(
+            /* webpackChunkName: "main-[request]" */
+            `./main/${session.state.main}.js`
+          )
         )
       )
 
       .then(
         module =>
-        ( transitionIn(host).run(),
+        ( console.log(module),
+          transitionIn(host).run(),
           module.default(host)
         )
       )
