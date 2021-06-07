@@ -2,7 +2,6 @@ import { store, html } from 'hybrids';
 import Session from '~/session';
 
 
-
 const PageAbout = {
   session: store(Session),
 

@@ -1,9 +1,14 @@
+import { Buffer } from 'buffer';
+
 import tryCatch from 'crocks/Result/tryCatch';
 
 import { define } from 'hybrids';
 
 import { route } from './session';
 
+
+
+// Elements
 import TheHeader from './pages/the-header';
 import TheMain from './pages/the-main';
 import TheFooter from './pages/the-footer';
@@ -12,7 +17,8 @@ import TheFooter from './pages/the-footer';
 
 const init =
   window =>
-  { define({ TheHeader, TheMain, TheFooter });
+  { window.Buffer = Buffer,
+    define({ TheHeader, TheMain, TheFooter });
     route({ path: window.location.pathname });
 
     window.addEventListener(
